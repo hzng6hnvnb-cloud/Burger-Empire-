@@ -1,0 +1,720 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #080706;
+    color: #fff;
+    min-height: 100vh;
+}
+
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 16px 6%;
+
+    background: #0d0b09;
+    border-bottom: 1px solid #2c241d;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 900;
+}
+
+.logo span {
+    color: #ffb52e;
+}
+
+.money-box {
+    background: #17120d;
+    border: 1px solid #5c4020;
+
+    padding: 10px 16px;
+
+    border-radius: 12px;
+
+    color: #ffd36a;
+
+    font-weight: bold;
+}
+
+.container {
+    width: min(1150px, 92%);
+    margin: auto;
+
+    padding: 30px 0 70px;
+}
+
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 40px;
+
+    border-radius: 25px;
+
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            #6b3914,
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #2a170c,
+            #0e0b08
+        );
+
+    border: 1px solid #4d321b;
+}
+
+.tag {
+    color: #ffb52e;
+    font-weight: bold;
+
+    margin-bottom: 10px;
+}
+
+.hero h1 {
+    font-size: 46px;
+    margin-bottom: 10px;
+}
+
+.description {
+    color: #c5bdb5;
+}
+
+.level-box {
+    text-align: center;
+
+    background: #17100a;
+
+    border: 1px solid #68461f;
+
+    padding: 18px 28px;
+
+    border-radius: 18px;
+}
+
+.level-box span {
+    display: block;
+
+    color: #aaa09a;
+}
+
+.level-box strong {
+    display: block;
+
+    color: #ffbd3b;
+
+    font-size: 42px;
+}
+
+
+.stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+.stat {
+    padding: 20px;
+
+    text-align: center;
+
+    background: #100e0b;
+
+    border: 1px solid #2d2721;
+
+    border-radius: 17px;
+}
+
+.stat span {
+    color: #a9a19a;
+}
+
+.stat strong {
+    display: block;
+
+    margin-top: 8px;
+
+    color: #ffbd3b;
+
+    font-size: 25px;
+}
+
+
+/* اللعبة */
+
+.game {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1.3fr;
+
+    gap: 20px;
+
+    margin-top: 30px;
+}
+
+
+/* المطعم */
+
+.restaurant,
+.upgrades {
+    background: #100e0b;
+
+    border: 1px solid #2d2721;
+
+    border-radius: 22px;
+
+    padding: 22px;
+}
+
+.restaurant-top {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+.restaurant-top h2 {
+    font-size: 24px;
+}
+
+.restaurant-top p {
+    color: #99918a;
+
+    margin-top: 5px;
+}
+
+.stars {
+    color: #ffc044;
+}
+
+.restaurant-image {
+    height: 270px;
+
+    margin-top: 20px;
+
+    border-radius: 18px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            #24180f,
+            #120e0a
+        );
+
+    border: 1px solid #49331f;
+}
+
+.sign {
+    position: absolute;
+
+    top: 25px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: #e54824;
+
+    padding: 12px 25px;
+
+    border-radius: 10px;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.4);
+}
+
+.counter {
+    position: absolute;
+
+    bottom: 0;
+
+    width: 100%;
+
+    height: 120px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-around;
+
+    background: #241b14;
+}
+
+.burger {
+    font-size: 70px;
+
+    animation:
+        burgerFloat 2s infinite ease-in-out;
+}
+
+.cashier {
+    font-size: 65px;
+}
+
+@keyframes burgerFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+
+}
+
+.order-box {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 10px;
+
+    margin-top: 15px;
+}
+
+.order-box > div {
+    padding: 15px;
+
+    background: #17130f;
+
+    border-radius: 12px;
+
+    text-align: center;
+}
+
+.order-box span {
+    display: block;
+
+    color: #928a83;
+
+    font-size: 13px;
+}
+
+.order-box strong {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #ffbd3b;
+
+    font-size: 20px;
+}
+
+.sell-button {
+    width: 100%;
+
+    margin-top: 15px;
+
+    padding: 18px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: #e84a26;
+
+    color: white;
+
+    font-size: 19px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.sell-button:hover {
+    transform: translateY(-2px);
+
+    background: #ff5a30;
+}
+
+.sell-button:active {
+    transform: scale(.97);
+}
+
+.sell-button small {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #ffd4c9;
+}
+
+
+/* التطويرات */
+
+.section-title {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 18px;
+}
+
+.section-title p {
+    color: #918982;
+
+    margin-top: 5px;
+
+    font-size: 14px;
+}
+
+.upgrade-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.upgrade {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 13px;
+
+    background: #17130f;
+
+    border: 1px solid #2c241e;
+
+    border-radius: 15px;
+}
+
+.upgrade.special {
+    border-color: #65421f;
+
+    background:
+        linear-gradient(
+            90deg,
+            #1c140c,
+            #17130f
+        );
+}
+
+.upgrade-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    background: #241b13;
+
+    border-radius: 12px;
+
+    font-size: 24px;
+}
+
+.upgrade-info {
+    flex: 1;
+}
+
+.upgrade-info h3 {
+    font-size: 15px;
+}
+
+.upgrade-info p {
+    color: #8e8780;
+
+    font-size: 12px;
+
+    margin-top: 4px;
+}
+
+.upgrade-info span {
+    display: block;
+
+    color: #b6ada5;
+
+    font-size: 11px;
+
+    margin-top: 5px;
+}
+
+.upgrade-button {
+    border: none;
+
+    background: #ffb52e;
+
+    color: #171006;
+
+    padding: 10px;
+
+    border-radius: 9px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    min-width: 85px;
+}
+
+.upgrade-button:hover {
+    background: #ffd06b;
+}
+
+.upgrade-button.disabled {
+    background: #39332d;
+
+    color: #77716b;
+
+    cursor: not-allowed;
+}
+
+
+/* الفروع */
+
+.branches-section {
+    margin-top: 30px;
+
+    padding: 25px;
+
+    background: #100e0b;
+
+    border: 1px solid #2d2721;
+
+    border-radius: 22px;
+}
+
+.branches {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+}
+
+.branch {
+    padding: 22px;
+
+    text-align: center;
+
+    border-radius: 17px;
+
+    background: #17130f;
+
+    border: 1px solid #2d2721;
+}
+
+.branch.active {
+    border-color: #bd7e27;
+}
+
+.branch.locked {
+    opacity: .65;
+}
+
+.branch-icon {
+    font-size: 45px;
+
+    margin-bottom: 10px;
+}
+
+.branch p {
+    color: #8e8780;
+
+    margin: 7px 0;
+}
+
+.branch strong {
+    color: #63dc88;
+
+    font-size: 13px;
+}
+
+.branch button {
+    margin-top: 8px;
+
+    border: none;
+
+    padding: 9px 15px;
+
+    border-radius: 9px;
+
+    background: #ffb52e;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+/* الإنجازات */
+
+.achievements {
+    margin-top: 30px;
+
+    padding: 25px;
+
+    background: #100e0b;
+
+    border: 1px solid #2d2721;
+
+    border-radius: 22px;
+}
+
+.achievement-list {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+
+    margin-top: 15px;
+}
+
+.achievement-list div {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 15px;
+
+    background: #17130f;
+
+    border-radius: 12px;
+
+    color: #aaa19a;
+}
+
+.achievement-list div.unlocked {
+    color: #ffd15c;
+
+    border: 1px solid #66461f;
+}
+
+
+/* التنبيه */
+
+.toast {
+    position: fixed;
+
+    bottom: 25px;
+    left: 50%;
+
+    transform:
+        translate(-50%, 100px);
+
+    background: #ffb52e;
+
+    color: #1b1005;
+
+    padding: 13px 22px;
+
+    border-radius: 12px;
+
+    font-weight: bold;
+
+    z-index: 100;
+
+    opacity: 0;
+
+    transition: .3s;
+}
+
+.toast.show {
+    opacity: 1;
+
+    transform:
+        translate(-50%, 0);
+}
+
+
+/* الجوال */
+
+@media(max-width: 850px) {
+
+    .game {
+        grid-template-columns: 1fr;
+    }
+
+    .stats {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+@media(max-width: 600px) {
+
+    .topbar {
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+    .hero {
+        padding: 25px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .branches {
+        grid-template-columns: 1fr;
+    }
+
+    .achievement-list {
+        grid-template-columns: 1fr;
+    }
+
+    .restaurant-image {
+        height: 230px;
+    }
+
+}
