@@ -1,508 +1,183 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Burger Empire — إمبراطورية البرجر</title>
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Burger Empire - إمبراطورية البرجر</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header class="topbar">
-
-    <div class="logo">
-        🍔 Burger <span>Empire</span>
+  <div class="brand">
+    🍔
+    <div>
+      <strong>إمبراطورية البرجر</strong>
+      <small>مطعمك... إمبراطوريتك</small>
     </div>
+  </div>
 
-    <div class="money-box">
-        💰 <span id="money">100</span> ريال
-    </div>
-
+  <div class="money">
+    💰 <span id="money">500</span> ريال
+  </div>
 </header>
 
+<main>
 
-<main class="container">
+  <section class="game-area">
 
-    <section class="hero">
+    <div class="game-header">
+      <div>
+        <h1>مطعمي</h1>
+        <p>طوّر مطعمك وشاهد التطويرات وهي تُبنى أمامك</p>
+      </div>
+
+      <div class="stats">
+        <div>
+          ⭐
+          <b id="reputation">1</b>
+          <span>السمعة</span>
+        </div>
 
         <div>
-
-            <p class="tag">من عربة صغيرة إلى إمبراطورية</p>
-
-            <h1>إمبراطورية البرجر 🍔</h1>
-
-            <p class="description">
-                اطبخ، بع، طوّر مطعمك، وافتح فروع جديدة.
-            </p>
-
+          🍔
+          <b id="sales">0</b>
+          <span>المبيعات</span>
         </div>
 
-        <div class="level-box">
+        <div>
+          👥
+          <b id="customers">0</b>
+          <span>الزبائن</span>
+        </div>
+      </div>
+    </div>
 
-            <span>المستوى</span>
+    <!-- عالم اللعبة -->
+    <div class="game-world">
 
-            <strong id="level">1</strong>
+      <canvas id="gameCanvas"></canvas>
 
+      <div class="construction-ui hidden" id="constructionUI">
+        <div class="construction-title" id="constructionTitle">
+          جاري البناء...
         </div>
 
-    </section>
-
-
-    <section class="stats">
-
-        <div class="stat">
-
-            <span>💰 الرصيد</span>
-
-            <strong id="moneyStat">100</strong>
-
+        <div class="progress">
+          <div id="constructionProgress"></div>
         </div>
 
-        <div class="stat">
+        <span id="constructionPercent">0%</span>
+      </div>
 
-            <span>🍔 المبيعات</span>
+      <div class="notification hidden" id="notification"></div>
 
-            <strong id="sales">0</strong>
+    </div>
 
-        </div>
+  </section>
 
-        <div class="stat">
+  <!-- لوحة التطوير -->
+  <aside class="control-panel">
 
-            <span>⭐ السمعة</span>
+    <h2>🛠️ التطويرات</h2>
 
-            <strong id="reputation">1</strong>
+    <div class="upgrade-card">
+      <div class="upgrade-icon">🪑</div>
 
-        </div>
+      <div class="upgrade-info">
+        <strong>طاولة جديدة</strong>
+        <span>يأتي عامل ويبنيها داخل المطعم</span>
+        <b>💰 150 ريال</b>
+      </div>
 
-        <div class="stat">
+      <button id="tableBtn">
+        بناء
+      </button>
+    </div>
 
-            <span>🏪 الفروع</span>
 
-            <strong id="branches">1</strong>
+    <div class="upgrade-card">
+      <div class="upgrade-icon">👨‍🍳</div>
 
-        </div>
+      <div class="upgrade-info">
+        <strong>طباخ جديد</strong>
+        <span>يزيد سرعة تجهيز الطلبات</span>
+        <b>💰 300 ريال</b>
+      </div>
 
-    </section>
+      <button id="chefBtn">
+        توظيف
+      </button>
+    </div>
 
 
-    <section class="game">
+    <div class="upgrade-card">
+      <div class="upgrade-icon">🍳</div>
 
-        <div class="restaurant">
+      <div class="upgrade-info">
+        <strong>توسعة المطبخ</strong>
+        <span>يكبر المطبخ ويظهر بشكل فعلي</span>
+        <b>💰 700 ريال</b>
+      </div>
 
-            <div class="restaurant-top">
+      <button id="kitchenBtn">
+        تطوير
+      </button>
+    </div>
 
-                <div>
 
-                    <h2>🍔 مطعمي</h2>
+    <div class="upgrade-card">
+      <div class="upgrade-icon">🛵</div>
 
-                    <p id="restaurantStatus">
-                        مطعم صغير
-                    </p>
+      <div class="upgrade-info">
+        <strong>التوصيل</strong>
+        <span>يظهر مندوب توصيل خارج المطعم</span>
+        <b>💰 1200 ريال</b>
+      </div>
 
-                </div>
+      <button id="deliveryBtn">
+        شراء
+      </button>
+    </div>
 
-                <div class="stars">
-                    ⭐ <span id="restaurantStars">1.0</span>
-                </div>
 
-            </div>
+    <div class="upgrade-card">
+      <div class="upgrade-icon">🏗️</div>
 
+      <div class="upgrade-info">
+        <strong>توسعة المطعم</strong>
+        <span>يكبر مبنى المطعم نفسه</span>
+        <b>💰 2500 ريال</b>
+      </div>
 
-            <div class="restaurant-image">
+      <button id="expandBtn">
+        توسعة
+      </button>
+    </div>
 
-                <div class="sign">
-                    🍔 BURGER
-                </div>
 
-                <div class="counter">
+    <div class="restaurant-level">
+      <span>مستوى المطعم</span>
 
-                    <div class="burger">
-                        🍔
-                    </div>
+      <strong id="restaurantLevel">
+        1
+      </strong>
 
-                    <div class="cashier">
-                        🧑‍🍳
-                    </div>
+      <div class="level-bar">
+        <div id="levelFill"></div>
+      </div>
+    </div>
 
-                </div>
-
-            </div>
-
-
-            <div class="order-box">
-
-                <div>
-
-                    <span>سعر البرجر</span>
-
-                    <strong>
-                        <span id="burgerPrice">10</span> ريال
-                    </strong>
-
-                </div>
-
-                <div>
-
-                    <span>الزبائن الآن</span>
-
-                    <strong id="customers">
-                        0
-                    </strong>
-
-                </div>
-
-            </div>
-
-
-            <button
-                id="sellButton"
-                class="sell-button">
-
-                🍔 بيع برجر
-                <small>+10 ريال</small>
-
-            </button>
-
-        </div>
-
-
-        <div class="upgrades">
-
-            <div class="section-title">
-
-                <div>
-
-                    <h2>🛠️ التطويرات</h2>
-
-                    <p>
-                        طوّر مطعمك وارفع دخلك
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="upgrade-list">
-
-
-                <div class="upgrade">
-
-                    <div class="upgrade-icon">
-                        🍔
-                    </div>
-
-                    <div class="upgrade-info">
-
-                        <h3>جودة البرجر</h3>
-
-                        <p>
-                            يرفع سعر البرجر +2 ريال
-                        </p>
-
-                        <span>
-                            المستوى:
-                            <b id="qualityLevel">1</b>
-                        </span>
-
-                    </div>
-
-                    <button
-                        class="upgrade-button"
-                        data-upgrade="quality">
-
-                        💰 <span id="qualityCost">100</span>
-
-                    </button>
-
-                </div>
-
-
-                <div class="upgrade">
-
-                    <div class="upgrade-icon">
-                        🔥
-                    </div>
-
-                    <div class="upgrade-info">
-
-                        <h3>سرعة الطبخ</h3>
-
-                        <p>
-                            يزيد عدد الزبائن تلقائيًا
-                        </p>
-
-                        <span>
-                            المستوى:
-                            <b id="speedLevel">1</b>
-                        </span>
-
-                    </div>
-
-                    <button
-                        class="upgrade-button"
-                        data-upgrade="speed">
-
-                        💰 <span id="speedCost">150</span>
-
-                    </button>
-
-                </div>
-
-
-                <div class="upgrade">
-
-                    <div class="upgrade-icon">
-                        🧑‍🍳
-                    </div>
-
-                    <div class="upgrade-info">
-
-                        <h3>طباخ إضافي</h3>
-
-                        <p>
-                            دخل تلقائي كل ثانية
-                        </p>
-
-                        <span>
-                            المستوى:
-                            <b id="chefLevel">1</b>
-                        </span>
-
-                    </div>
-
-                    <button
-                        class="upgrade-button"
-                        data-upgrade="chef">
-
-                        💰 <span id="chefCost">300</span>
-
-                    </button>
-
-                </div>
-
-
-                <div class="upgrade">
-
-                    <div class="upgrade-icon">
-                        🪑
-                    </div>
-
-                    <div class="upgrade-info">
-
-                        <h3>الطاولات</h3>
-
-                        <p>
-                            تستقبل زبائن أكثر
-                        </p>
-
-                        <span>
-                            المستوى:
-                            <b id="tablesLevel">1</b>
-                        </span>
-
-                    </div>
-
-                    <button
-                        class="upgrade-button"
-                        data-upgrade="tables">
-
-                        💰 <span id="tablesCost">500</span>
-
-                    </button>
-
-                </div>
-
-
-                <div class="upgrade">
-
-                    <div class="upgrade-icon">
-                        📦
-                    </div>
-
-                    <div class="upgrade-info">
-
-                        <h3>التوصيل</h3>
-
-                        <p>
-                            دخل إضافي تلقائي
-                        </p>
-
-                        <span>
-                            المستوى:
-                            <b id="deliveryLevel">0</b>
-                        </span>
-
-                    </div>
-
-                    <button
-                        class="upgrade-button"
-                        data-upgrade="delivery">
-
-                        💰 <span id="deliveryCost">1,000</span>
-
-                    </button>
-
-                </div>
-
-
-                <div class="upgrade special">
-
-                    <div class="upgrade-icon">
-                        🏪
-                    </div>
-
-                    <div class="upgrade-info">
-
-                        <h3>توسعة المطعم</h3>
-
-                        <p>
-                            افتح مستوى جديد من المطعم
-                        </p>
-
-                        <span>
-                            المستوى:
-                            <b id="restaurantLevel">1</b>
-                        </span>
-
-                    </div>
-
-                    <button
-                        class="upgrade-button"
-                        data-upgrade="restaurant">
-
-                        💰 <span id="restaurantCost">2,500</span>
-
-                    </button>
-
-                </div>
-
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <section class="branches-section">
-
-        <div class="section-title">
-
-            <div>
-
-                <h2>🏙️ فروع المطعم</h2>
-
-                <p>
-                    افتح فروعًا جديدة وزد دخلك
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="branches">
-
-            <div class="branch active">
-
-                <div class="branch-icon">
-                    🏪
-                </div>
-
-                <h3>الفرع الأول</h3>
-
-                <p>
-                    فرعك الرئيسي
-                </p>
-
-                <strong>
-                    يعمل الآن ✅
-                </strong>
-
-            </div>
-
-
-            <div
-                id="branch2"
-                class="branch locked">
-
-                <div class="branch-icon">
-                    🔒
-                </div>
-
-                <h3>الفرع الثاني</h3>
-
-                <p>
-                    افتح الفرع الثاني
-                </p>
-
-                <button
-                    id="branchButton">
-
-                    💰 10,000
-
-                </button>
-
-            </div>
-
-
-            <div class="branch locked">
-
-                <div class="branch-icon">
-                    🔒
-                </div>
-
-                <h3>الفرع الثالث</h3>
-
-                <p>
-                    افتحه لاحقًا
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <section class="achievements">
-
-        <h2>🏆 الإنجازات</h2>
-
-        <div class="achievement-list">
-
-            <div id="achievement1">
-                🍔 أول برجر
-                <span>🔒</span>
-            </div>
-
-            <div id="achievement2">
-                💰 أول 1,000 ريال
-                <span>🔒</span>
-            </div>
-
-            <div id="achievement3">
-                🏪 أول فرع جديد
-                <span>🔒</span>
-            </div>
-
-        </div>
-
-    </section>
+  </aside>
 
 </main>
 
-
-<div id="toast" class="toast"></div>
-
+<div class="bottom-hint">
+  💡 كل تطوير يظهر داخل عالم اللعبة، وليس مجرد تغيير رقم.
+</div>
 
 <script src="app.js"></script>
 
 </body>
-
 </html>
